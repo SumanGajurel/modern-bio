@@ -7,13 +7,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Bot, Sparkles, X, Loader2 } from "lucide-react";
 
 /**
- * ChatWidgetDominant
- * A more eye-catching chat widget with:
+ * ChatWidgetDominant (build-safe)
  * - Pulsing, gradient FAB with unread badge
  * - Proactive nudge bubble (once per session)
- * - Quick prompt chips to reduce friction
+ * - Quick prompt chips
  * - Typing indicator and subtle animations
  * - Full-height sheet on mobile, comfy panel on desktop
+ *
+ * Note: All apostrophes in JSX text nodes are escaped to satisfy react/no-unescaped-entities.
  */
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -27,7 +28,7 @@ const QUICK_PROMPTS = [
 export default function ChatWidgetDominant() {
   const [open, setOpen] = React.useState(false);
   const [msgs, setMsgs] = React.useState<Msg[]>([
-    { role: "assistant", content: "Hi! I can answer questions about Suman's projects, skills, and experience." },
+    { role: "assistant", content: "Hi! Ask me about my research, projects, or publications." },
   ]);
   const [input, setInput] = React.useState("");
   const [loading, setLoading] = React.useState(false);
@@ -119,7 +120,7 @@ export default function ChatWidgetDominant() {
           >
             <div className="flex items-start gap-2">
               <Sparkles className="mt-[2px] h-4 w-4" />
-              <p>Ask me about Suman's projects or get a quick portfolio tour.</p>
+              <p>Ask me about Suman&apos;s projects or get a quick portfolio tour.</p>
               <button
                 className="ml-auto rounded-md p-1 text-slate-500 hover:bg-slate-100/60 dark:hover:bg-white/10"
                 onClick={() => setShowNudge(false)}
@@ -144,7 +145,12 @@ export default function ChatWidgetDominant() {
         {/* Messages */}
         <div className="flex-1 space-y-3 overflow-y-auto px-3 py-4">
           {msgs.map((m, i) => (
-            <motion.div key={i} className={m.role === "user" ? "text-right" : "text-left"} initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }}>
+            <motion.div
+              key={i}
+              className={m.role === "user" ? "text-right" : "text-left"}
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
               <div
                 className={`inline-block max-w-[85%] rounded-2xl px-3 py-2 text-sm ${
                   m.role === "user"
@@ -185,7 +191,7 @@ export default function ChatWidgetDominant() {
         {/* Composer */}
         <div className="flex items-end gap-2 border-t p-2">
           <Textarea
-            placeholder="Ask about Suman’s work…"
+            placeholder="Ask about Suman&rsquo;s work…"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => (e.key === "Enter" && !e.shiftKey ? (e.preventDefault(), send()) : null)}
