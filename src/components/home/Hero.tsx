@@ -30,8 +30,7 @@ export default function Hero() {
         <p className="mt-2 opacity-95">Research Scientist</p>
 
         <p className="mt-4 text-lg opacity-95">
-          I develop practical, data-driven tools for spatially explicit farm
-          management by modelling soil–plant–climate interactions.
+          I develop data driven tools.
         </p>
 
         {/* Tab-style CTAs */}
