@@ -19,7 +19,7 @@ import { Bot, Sparkles, X, Loader2 } from "lucide-react";
 type Msg = { role: "user" | "assistant"; content: string };
 
 const QUICK_PROMPTS = [
-  "Show me Suman's top projects",
+  "Show me Suman&apos;s top projects",
   "What skills does Suman use?",
   "Give me a 30-sec bio",
 ];
