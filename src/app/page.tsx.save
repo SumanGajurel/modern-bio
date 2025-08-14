@@ -1,0 +1,134 @@
+"use client";
+
+import ContactSection from "@/components/contact-section";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import ContactMap from "@/components/contact-map";
+
+const projects = [
+  { title: "Knowledge-guided ML for soil constraints", period: "2023–2025", blurb: "Optimising soil constraint management with ML." },
+  { title: "Drought resilience via long-term trials", period: "2023–2028", blurb: "Approaches for resilient crop systems." },
+  { title: "Climate risk pipeline (QLD)", period: "2023", blurb: "Quantifying climate risk on dominant soil types." },
+];
+
+const researchAreas = [
+  { title: "Pedometrics & Geostatistics", text: "3D soil mapping, uncertainty, spatial modelling." },
+  { title: "Soil–Plant–Climate", text: "APSIM & crop systems, constraints diagnosis." },
+  { title: "Decision Support", text: "Dashboards and reproducible data pipelines." },
+];
+
+const posts = [
+  { title: "Mapping sodicity in 3D", img: "/images/post1.jpg", date: "2024-10-02" },
+  { title: "Yield from iNDVI—what works", img: "/images/post2.jpg", date: "2024-06-18" },
+  { title: "Better P initialisation in APSIM", img: "/images/post3.jpg", date: "2023-11-05" },
+];
+
+export default function Home() {
+  return (
+    <main className="min-h-screen">
+      {/* HERO */}
+      <section className="relative isolate flex items-center justify-center" style={{ minHeight: "60vh" }}>
+        <div
+          className="absolute inset-0 -z-10 bg-center bg-cover"
+          style={{ backgroundImage: "linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('/images/hero.jpg')" }}
+        />
+        <div className="mx-auto max-w-3xl px-6 text-center text-white">
+          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">Suman Gajurel</h1>
+          <p className="mt-2 opacity-95">Research Scientist</p>
+          <p className="mt-4 text-lg opacity-95">
+            Practical, data-driven tools for spatially explicit farm management across soil–plant–climate interactions.
+          </p>
+          <div className="mt-6 flex justify-center gap-3">
+            <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900">
+              <Link href="/uploads/CV.pdf">Download CV</Link>
+            </Button>
+            <Button asChild><Link href="#projects">Projects</Link></Button>
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECTS */}
+      <section id="projects" className="max-w-6xl mx-auto px-6 py-16">
+        <div className="flex items-baseline justify-between gap-4">
+          <h2 className="text-2xl font-semibold">Projects</h2>
+        </div>
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          {projects.map((p) => (
+            <div key={p.title} className="rounded-2xl border p-6 bg-white">
+              <h3 className="font-medium">{p.title}</h3>
+              <p className="mt-1 text-xs text-slate-500">{p.period}</p>
+              <p className="mt-3 text-sm text-slate-600">{p.blurb}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* RESEARCH */}
+      <section id="research" className="max-w-6xl mx-auto px-6 py-16">
+        <h2 className="text-2xl font-semibold">Research</h2>
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {researchAreas.map((r) => (
+            <div key={r.title} className="rounded-2xl border p-6 bg-white">
+              <h3 className="font-medium">{r.title}</h3>
+              <p className="mt-2 text-sm text-slate-600">{r.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* BLOG */}
+      <section id="blog" className="max-w-6xl mx-auto px-6 py-16">
+        <h2 className="text-2xl font-semibold">Blog</h2>
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {posts.map((p) => (
+            <article key={p.title} className="overflow-hidden rounded-2xl border bg-white">
+              <Image src={p.img} alt="" width={800} height={600} className="h-40 w-full object-cover" />
+              <div className="p-5">
+                <div className="text-xs text-slate-500">{p.date}</div>
+                <div className="mt-1 font-medium">{p.title}</div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* STUDY ABROAD */}
+      <section id="study" className="max-w-6xl mx-auto px-6 py-16">
+        <h2 className="text-2xl font-semibold">Study Abroad</h2>
+        <p className="mt-3 max-w-3xl text-slate-700">
+          Interested in exchanges or field placements? I’m happy to discuss opportunities, logistics, and collaborators.
+        </p>
+        <div className="mt-5"><Button asChild><Link href="#contact">Get in touch</Link></Button></div>
+      </section>
+
+      {/* GALLERY */}
+      <section id="gallery" className="max-w-6xl mx-auto px-6 py-16">
+        <h2 className="text-2xl font-semibold">Gallery</h2>
+        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+          {["/images/field1.jpg","/images/field2.jpg","/images/lab.jpg","/images/talk.jpg"].map((src) => (
+            <div key={src} className="overflow-hidden rounded-2xl border">
+              <Image src={src} alt="" width={800} height={600} className="h-44 w-full object-cover" />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="max-w-6xl mx-auto px-6 py-16">
+        <h2 className="text-2xl font-semibold">Contact Me</h2>
+        <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="rounded-2xl border p-6 bg-white space-y-2">
+            <div>Email: <a className="underline" href="mailto:you@example.com">you@example.com</a></div>
+            <div>Location: Your City / Institution</div>
+            <div>Office hours: Mon–Fri</div>
+          </div>
+          <div className="rounded-2xl overflow-hidden border">
+            <ContactMap center={[-27.5598, 151.9507]} zoom={12} label="Your Office" />
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+}
