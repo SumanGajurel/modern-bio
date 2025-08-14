@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import dynamic from "next/dynamic";
+import type { DivIcon, LatLngExpression } from "leaflet";
 
-// Load react-leaflet on the client only
+// Client-only react-leaflet components
 const MapContainer = dynamic(
   async () => (await import("react-leaflet")).MapContainer,
   { ssr: false }
@@ -29,13 +30,13 @@ export default function LeafletMapInner({
   zoom = 2,
   label = "Here",
 }: {
-  center: LatLng;
+  center: LatLng;       // simple tuple for your props
   marker?: LatLng;
   zoom?: number;
   label?: string;
 }) {
-  // Create the Leaflet DivIcon on the client
-  const [pin, setPin] = React.useState<any>(null);
+  // Create the Leaflet DivIcon on the client only
+  const [pin, setPin] = React.useState<DivIcon | null>(null);
 
   React.useEffect(() => {
     let mounted = true;
@@ -60,9 +61,13 @@ export default function LeafletMapInner({
     };
   }, []);
 
+  // React-Leaflet expects LatLngExpression
+  const centerExpr: LatLngExpression = center;
+  const markerExpr: LatLngExpression | undefined = marker ?? center;
+
   return (
     <MapContainer
-      center={center as any}
+      center={centerExpr}
       zoom={zoom}
       style={{ height: 420, width: "100%" }}
       scrollWheelZoom
@@ -84,8 +89,8 @@ export default function LeafletMapInner({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {(marker ?? center) && pin && (
-        <Marker position={(marker ?? center) as any} icon={pin}>
+      {pin && markerExpr && (
+        <Marker position={markerExpr} icon={pin}>
           <Popup>{label}</Popup>
         </Marker>
       )}
