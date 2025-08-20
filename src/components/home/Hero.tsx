@@ -14,7 +14,7 @@ export default function Hero() {
         className="absolute inset-0 -z-10 bg-center bg-cover"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)), url('/images/hero.png')",
+            "url('/images/hero.png')",
         }}
       />
 
@@ -24,7 +24,7 @@ export default function Hero() {
           <AvatarIntro />
         </div>
 
-        <h1 className="mt-6 text-4xl sm:text-5xl font-semibold tracking-tight">
+        <h1 className="mt-5 text-4xl sm:text-5xl font-extrabold tracking-tight">
           Suman Gajurel
         </h1>
         <p className="mt-2 opacity-95">Research Scientist</p>

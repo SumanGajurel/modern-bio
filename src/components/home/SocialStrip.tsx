@@ -74,7 +74,7 @@ export default function SocialStrip() {
               data-height="260"
               href={`https://twitter.com/${TWITTER_HANDLE}`}
             >
-              Tweets by {TWITTER_HANDLE}
+              X 
             </a>
           </div>
           <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />

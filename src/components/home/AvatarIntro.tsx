@@ -5,7 +5,7 @@ import Image from "next/image";
 
 // Texts that rotate in the greeting bubble
 const MESSAGES = [
-  "Hi — Namaste! I&apos;m Suman Gajurel.",
+  "Hi — Namaste! I'm Suman Gajurel.",
   "Thank you for visiting my website.",
   "I hope you enjoy exploring my work.",
 ];
